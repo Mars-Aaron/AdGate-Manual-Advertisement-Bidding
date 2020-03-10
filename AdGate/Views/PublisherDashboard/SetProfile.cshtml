@@ -1,0 +1,59 @@
+﻿@model AdGate.Models.PublisherProfileViewModel;
+
+@{
+    ViewData["Title"] = "Create Profile";
+}
+
+<div class="register-page">
+    <div class="register-box">
+        <div class="card">
+            <div class="card-body register-card-body">
+                <p class="login-box-msg">Register for AdGate</p>
+                <form asp-action="SetProfile" asp-controller="PublisherDashboard" role="form" enctype="multipart/form-data">
+                    <input type="hidden" asp-for="UserId" value="@Model.UserId" />
+                    <div class="input-group mb-1">
+                        <div class="custom-file">
+                            <input asp-for="ProfilePicture" type="file" class="custom-file-input" id="profilePictureInput">
+                            <label class="custom-file-label" for="exampleInputFile">Choose file</label>
+                        </div>
+                    </div>
+                    <div class="input-group mb-3">
+                        <span asp-validation-for="ProfilePicture" class="text-danger"></span>
+                    </div>
+                    <div class="input-group mb-1">
+                        <input asp-for="GivenName" type="text" class="form-control" placeholder="Given Name">
+                        <div class="input-group-append">
+                            <div class="input-group-text">
+                                <span class="fas fa-envelope"></span>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="input-group mb-3">
+                        <span asp-validation-for="GivenName" class="text-danger"></span>
+                    </div>
+                    <div class="input-group mb-1">
+                        <input asp-for="FamilyName" type="text" class="form-control" placeholder="Family Name">
+                        <div class="input-group-append">
+                            <div class="input-group-text">
+                                <span class="fas fa-lock"></span>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="input-group mb-3">
+                        <span asp-validation-for="FamilyName" class="text-danger"></span>
+                    </div>
+                    <div class="row">
+                        <div class="col-8">
+                        </div>
+                        <div class="col-4">
+                            <button type="submit" class="btn btn-primary btn-block">Complete</button>
+                        </div>
+                    </div>
+                </form>
+            </div>
+        </div>
+    </div>
+</div>
+@section Scripts {
+    @{await Html.RenderPartialAsync("_ValidationScriptsPartial");}
+}

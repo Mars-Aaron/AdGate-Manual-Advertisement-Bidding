@@ -1,0 +1,43 @@
+﻿@model AdGate.Models.ContentProfile
+
+@{
+    ViewData["Title"] = "ViewContentProfile";
+    Layout = "~/Views/Shared/_PublisherDashboardLayout.cshtml";
+}
+
+<h2>ViewContentProfile</h2>
+
+<div>
+    <h4>ContentProfile</h4>
+    <hr />
+    <dl class="dl-horizontal">
+        <dt>
+            @Html.DisplayNameFor(model => model.ContentName)
+        </dt>
+        <dd>
+            @Html.DisplayFor(model => model.ContentName)
+        </dd>
+        <dt>
+            @Html.DisplayNameFor(model => model.ContentMedium)
+        </dt>
+        <dd>
+            @Html.DisplayFor(model => model.ContentMedium)
+        </dd>
+        <dt>
+            @Html.DisplayNameFor(model => model.VisitsPerMonth)
+        </dt>
+        <dd>
+            @Html.DisplayFor(model => model.VisitsPerMonth)
+        </dd>
+        <dt>
+            @Html.DisplayNameFor(model => model.IsVerified)
+        </dt>
+        <dd>
+            @Html.DisplayFor(model => model.IsVerified)
+        </dd>
+    </dl>
+</div>
+<div>
+    <a asp-action="Edit" asp-route-id="@Model.ContentProfileId">Edit</a> |
+    <a asp-action="Index">Back to List</a>
+</div>

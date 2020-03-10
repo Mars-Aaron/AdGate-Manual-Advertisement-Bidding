@@ -1,0 +1,241 @@
+﻿@model AdGate.Models.PublisherEditProfileViewModel
+
+@{
+    ViewData["Title"] = "Edit Profile - AdGate";
+    Layout = "_PublisherDashboardLayout";
+}
+    <aside class="main-sidebar sidebar-dark-primary elevation-4">
+        <!-- Brand Logo -->
+        <a href="index3.html" class="brand-link">
+            @*<img src="dist/img/AdminLTELogo.png" alt="AdminLTE Logo" class="brand-image img-circle elevation-3"
+            style="opacity: .8">*@
+            <span class="brand-text font-weight-light">Dashboard</span>
+        </a>
+
+        <!-- Sidebar -->
+        <div class="sidebar">
+
+            <!-- Sidebar Menu -->
+            <nav class="mt-2">
+                <ul class="nav nav-pills nav-sidebar flex-column" data-widget="treeview" role="menu" data-accordion="false">
+                    <!-- Add icons to the links using the .nav-icon class
+                with font-awesome or any other icon font library -->
+                    <li class="nav-item has-treeview">
+                        <a href="#" class="nav-link">
+                            <i class="nav-icon fas fa-tasks"></i>
+                            <p>
+                                Ad Spaces Market
+                                <i class="right fas fa-angle-left"></i>
+                            </p>
+                        </a>
+                        <ul class="nav nav-treeview">
+                            <li class="nav-item">
+                                <a asp-action="Index" class="nav-link">
+                                    <i class="fas fa-users nav-icon"></i>
+                                    <p>My Ad Spaces</p>
+                                </a>
+                            </li>
+                            <li class="nav-item">
+                                <a asp-action="CreateAdmin" class="nav-link">
+                                    <i class="fas fa-user-cog nav-icon"></i>
+                                    <p>Publish Ad Spaces</p>
+                                </a>
+                            </li>
+                        </ul>
+                    </li>
+                    <li class="nav-item has-treeview">
+                        <a href="#" class="nav-link">
+                            <i class="nav-icon fas fa-tasks"></i>
+                            <p>
+                                Affiliation
+                                <i class="right fas fa-angle-left"></i>
+                            </p>
+                        </a>
+                        <ul class="nav nav-treeview">
+                            <li class="nav-item">
+                                <a asp-action="Index" class="nav-link">
+                                    <i class="fas fa-users nav-icon"></i>
+                                    <p>Companies</p>
+                                </a>
+                            </li>
+                            <li class="nav-item">
+                                <a asp-action="CreateAdmin" class="nav-link">
+                                    <i class="fas fa-user-cog nav-icon"></i>
+                                    <p>Message Affiliates</p>
+                                </a>
+                            </li>
+                        </ul>
+                    </li>
+                    <li class="nav-item has-treeview menu-open">
+                        <a href="#" class="nav-link active">
+                            <i class="nav-icon fas fa-tasks"></i>
+                            <p>
+                                Profile
+                                <i class="right fas fa-angle-left"></i>
+                            </p>
+                        </a>
+                        <ul class="nav nav-treeview">
+                            <li class="nav-item">
+                                <a asp-action="Index" asp-controller="AdvertiserDashboard" class="nav-link active">
+                                    <i class="fas fa-users nav-icon"></i>
+                                    <p>View Profile</p>
+                                </a>
+                            </li>
+                            <li class="nav-item">
+                                <a asp-action="EditProfile" asp-controller="AdvertiserDashboard" class="nav-link">
+                                    <i class="fas fa-user-cog nav-icon"></i>
+                                    <p>Edit Profile</p>
+                                </a>
+                            </li>
+                        </ul>
+                    </li>
+                    <li class="nav-item">
+                        <a data-toggle="modal" data-target="#logoutModal" class="nav-link">
+                            <i class="nav-icon fas fa-sign-out-alt"></i>
+                            <p>
+                                Statistics
+                            </p>
+                        </a>
+                    </li>
+                    <li class="nav-item">
+                        <a data-toggle="modal" data-target="#logoutModal" class="nav-link">
+                            <i class="nav-icon fas fa-sign-out-alt"></i>
+                            <p>
+                                Sign Out
+                            </p>
+                        </a>
+                    </li>
+                </ul>
+            </nav>
+            <!-- /.sidebar-menu -->
+        </div>
+        <!-- /.sidebar -->
+    </aside>
+
+<div class="content-wrapper">
+    <!-- Content Header (Page header) -->
+    <div class="content-header">
+        <div class="container-fluid">
+            <div class="row mb-2">
+                <div class="col-sm-6">
+                    <h1 class="m-0 text-dark">Edit Profile</h1>
+                </div><!-- /.col -->
+                <div class="col-sm-6">
+                    <ol class="breadcrumb float-sm-right">
+                        <li class="breadcrumb-item">Dashboard</li>
+                        <li class="breadcrumb-item">Profile</li>
+                        <li class="breadcrumb-item active">Edit Profile</li>
+                    </ol>
+                </div><!-- /.col -->
+            </div><!-- /.row -->
+        </div><!-- /.container-fluid -->
+    </div>
+    <!-- /.content-header -->
+
+    <section class="content">
+        <div class="container-fluid">
+            <div class="card card-dark card-outline">
+                <div class="card-header">
+                    <div class="float-left">
+                        <h3 class="card-title p-2">Current Profile</h3>
+                        <p class="font-italic pl-2" style="font-size: 10px">Changes Made</p>
+                    </div>
+                    <div class="float-right">
+                        <a asp-action="Index" asp-controller="PublisherDashboard" class="btn btn-danger text-white" style="cursor: pointer">Cancel</a>
+                    </div>
+                </div>
+                <!-- /.card-header -->
+                <div class="card-body">
+                    <div class="row">
+                        <div class="col-md-4">
+                            <form asp-action="EditProfile" asp-controller="PublisherDashboard">
+
+                                <input type="hidden" asp-for="ProfileId" />
+                                <dl>
+                                    <dt>
+                                        @Html.DisplayNameFor(model => model.GivenName)
+                                    </dt>
+                                    <dd>
+                                        <div class="input-group mb-1">
+                                            <input asp-for="GivenName" type="text" class="form-control" placeholder="Given Name">
+                                            <div class="input-group-append">
+                                                <div class="input-group-text">
+                                                    <span class="fas fa-envelope"></span>
+                                                </div>
+                                            </div>
+                                        </div>
+                                        <div class="input-group mb-3">
+                                            <span asp-validation-for="GivenName" class="text-danger"></span>
+                                        </div>
+                                    </dd>
+                                    <dt>
+                                        @Html.DisplayNameFor(model => model.FamilyName)
+                                    </dt>
+                                    <dd>
+                                        <div class="input-group mb-1">
+                                            <input asp-for="FamilyName" type="text" class="form-control" placeholder="Family Name">
+                                            <div class="input-group-append">
+                                                <div class="input-group-text">
+                                                    <span class="fas fa-lock"></span>
+                                                </div>
+                                            </div>
+                                        </div>
+                                        <div class="input-group mb-3">
+                                            <span asp-validation-for="FamilyName" class="text-danger"></span>
+                                        </div>
+                                    </dd>
+                                    <dt>
+                                        @Html.DisplayNameFor(model => model.Password)
+                                    </dt>
+                                    <dd>
+                                        <div class="input-group mb-1">
+                                            <input asp-for="Password" value="@Model.Password" type="password" class="form-control" placeholder="Password">
+                                            <div class="input-group-append">
+                                                <div class="input-group-text">
+                                                    <span class="fas fa-lock"></span>
+                                                </div>
+                                            </div>
+                                        </div>
+                                        <div class="input-group mb-3">
+                                            <span asp-validation-for="Password" class="text-danger"></span>
+                                        </div>
+                                    </dd>
+                                    <dt>
+                                        @Html.DisplayNameFor(model => model.ConfirmPassword)
+                                    </dt>
+                                    <dd>
+                                        <div class="input-group mb-1">
+                                            <input asp-for="ConfirmPassword" type="password" class="form-control" placeholder="Confirm Password">
+                                            <div class="input-group-append">
+                                                <div class="input-group-text">
+                                                    <span class="fas fa-lock"></span>
+                                                </div>
+                                            </div>
+                                        </div>
+                                        <div class="input-group mb-3">
+                                            <span asp-validation-for="ConfirmPassword" class="text-danger"></span>
+                                        </div>
+                                    </dd>
+                                </dl>
+                                <input type="submit" value="Save" class="btn btn-success w-25" />
+                            </form>
+                        </div>
+                        <div class="flex-grow-1 text-center">
+                            <img src="https://upload.wikimedia.org/wikipedia/commons/7/7c/Profile_avatar_placeholder_large.png" style="object-fit: contain;border-radius: 75px; width: 100px; height: 100px" />
+                        </div>
+                        <div class="input-group mb-1">
+                            <div class="custom-file">
+                                <input asp-for="NewProfilePicture" type="file" class="custom-file-input" id="exampleInputFile" accept="image/jpg,image/png">
+                                <label class="custom-file-label" for="exampleInputFile">Choose file</label>
+                            </div>
+                        </div>
+                        <div class="input-group mb-3">
+                            <span asp-validation-for="NewProfilePicture" class="text-danger"></span>
+                        </div>
+                    </div>
+                </div>
+                <!-- /.card-body -->
+            </div>
+        </div>
+    </section>
+</div>

@@ -1,0 +1,16 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!--
+This file is used by the publish/package process of your Web project. You can customize the behavior of this process
+by editing this MSBuild file. In order to learn more about this please visit https://go.microsoft.com/fwlink/?LinkID=208121. 
+-->
+<Project ToolsVersion="4.0" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <PropertyGroup>
+    <TimeStampOfAssociatedLegacyPublishXmlFile />
+    <EncryptedPassword>AQAAANCMnd8BFdERjHoAwE/Cl+sBAAAAofJ9fmWKgUuI4ahP8wj/agAAAAACAAAAAAAQZgAAAAEAACAAAAB91TXTk0TTJ/LTFZScqDsFCWvtAQyYgbMmzmP71GIBEgAAAAAOgAAAAAIAACAAAAB3yyUSsUNBcpl/IiaROIHMVX4oZOIfkuPgnTQmo03L94AAAABZeM4tzYyYCgveHzvP5fXvsU/pXoXJekPeoLVncBTK//avjXvBh6EFLOTWiJ9ppdMofedeFAlrjZeJASnSqpK1fpK1ulwfAS8vjXwUddep1Pom1VnVDlFsGPjjUaY9+4INtsF+qE045Lc+w3kzySo+ySWlRIPAY78GNbyxHts0YEAAAACyM7ChjLYMvKGqSp+Sq8pvX5TIQ1x84bD55hAI+uz5wXwz+mlev/WAXFMe+yD21iqkn3D48m+dHPxRji0CZvNd</EncryptedPassword>
+  </PropertyGroup>
+  <ItemGroup>
+    <DestinationConnectionStrings Include="AdGateContext">
+      <Value>Server=%28localdb%29\mssqllocaldb%3bDatabase=AdGateDB%3bTrusted_Connection=True%3bMultipleActiveResultSets=true</Value>
+    </DestinationConnectionStrings>
+  </ItemGroup>
+</Project>

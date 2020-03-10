@@ -1,0 +1,195 @@
+﻿@model AdGate.Models.PublisherProfile
+
+@{
+    ViewData["Title"] = "Publisher Profile";
+    Layout = "_PublisherDashboardLayout";
+}
+
+<aside class="main-sidebar sidebar-dark-primary elevation-4">
+    <!-- Brand Logo -->
+    <a href="index3.html" class="brand-link">
+        @*<img src="dist/img/AdminLTELogo.png" alt="AdminLTE Logo" class="brand-image img-circle elevation-3"
+            style="opacity: .8">*@
+        <span class="brand-text font-weight-light">Dashboard</span>
+    </a>
+
+    <!-- Sidebar -->
+    <div class="sidebar">
+
+        <!-- Sidebar Menu -->
+        <nav class="mt-2">
+            <ul class="nav nav-pills nav-sidebar flex-column" data-widget="treeview" role="menu" data-accordion="false">
+                <!-- Add icons to the links using the .nav-icon class
+    with font-awesome or any other icon font library -->
+                <li class="nav-item has-treeview">
+                    <a href="#" class="nav-link">
+                        <i class="nav-icon fas fa-tasks"></i>
+                        <p>
+                            Ad Spaces Market
+                            <i class="right fas fa-angle-left"></i>
+                        </p>
+                    </a>
+                    <ul class="nav nav-treeview">
+                        <li class="nav-item">
+                            <a asp-action="Index" class="nav-link">
+                                <i class="fas fa-users nav-icon"></i>
+                                <p>My Ad Spaces</p>
+                            </a>
+                        </li>
+                        <li class="nav-item">
+                            <a asp-action="CreateAdmin" class="nav-link">
+                                <i class="fas fa-user-cog nav-icon"></i>
+                                <p>Publish Ad Spaces</p>
+                            </a>
+                        </li>
+                    </ul>
+                </li>
+                <li class="nav-item has-treeview">
+                    <a href="#" class="nav-link">
+                        <i class="nav-icon fas fa-tasks"></i>
+                        <p>
+                            Content Profiles
+                            <i class="right fas fa-angle-left"></i>
+                        </p>
+                    </a>
+                    <ul class="nav nav-treeview">
+                        <li class="nav-item">
+                            <a asp-action="CreateContentProfile" asp-controller="PublisherDashboard" class="nav-link">
+                                <i class="fas fa-users nav-icon"></i>
+                                <p>Create Content Profile</p>
+                            </a>
+                        </li>
+                        <li class="nav-item">
+                            <a asp-action="ListContentProfiles" asp-controller="PublisherDashboard" class="nav-link">
+                                <i class="fas fa-user-cog nav-icon"></i>
+                                <p>View Content Profiles</p>
+                            </a>
+                        </li>
+                    </ul>
+                </li>
+                <li class="nav-item has-treeview">
+                    <a href="#" class="nav-link">
+                        <i class="nav-icon fas fa-tasks"></i>
+                        <p>
+                            Affiliation
+                            <i class="right fas fa-angle-left"></i>
+                        </p>
+                    </a>
+                    <ul class="nav nav-treeview">
+                        <li class="nav-item">
+                            <a asp-action="Index" class="nav-link">
+                                <i class="fas fa-users nav-icon"></i>
+                                <p>Companies</p>
+                            </a>
+                        </li>
+                        <li class="nav-item">
+                            <a asp-action="CreateAdmin" class="nav-link">
+                                <i class="fas fa-user-cog nav-icon"></i>
+                                <p>Message Affiliates</p>
+                            </a>
+                        </li>
+                    </ul>
+                </li>
+                <li class="nav-item has-treeview menu-open">
+                    <a href="#" class="nav-link active">
+                        <i class="nav-icon fas fa-tasks"></i>
+                        <p>
+                            Profile
+                            <i class="right fas fa-angle-left"></i>
+                        </p>
+                    </a>
+                    <ul class="nav nav-treeview">
+                        <li class="nav-item">
+                            <a asp-action="Index" asp-controller="AdvertiserDashboard" class="nav-link active">
+                                <i class="fas fa-users nav-icon"></i>
+                                <p>View Profile</p>
+                            </a>
+                        </li>
+                        <li class="nav-item">
+                            <a asp-action="EditProfile" asp-controller="AdvertiserDashboard" class="nav-link">
+                                <i class="fas fa-user-cog nav-icon"></i>
+                                <p>Edit Profile</p>
+                            </a>
+                        </li>
+                    </ul>
+                </li>
+                <li class="nav-item">
+                    <a data-toggle="modal" data-target="#logoutModal" class="nav-link">
+                        <i class="nav-icon fas fa-sign-out-alt"></i>
+                        <p>
+                            Statistics
+                        </p>
+                    </a>
+                </li>
+                <li class="nav-item">
+                    <a data-toggle="modal" data-target="#logoutModal" class="nav-link">
+                        <i class="nav-icon fas fa-sign-out-alt"></i>
+                        <p>
+                            Sign Out
+                        </p>
+                    </a>
+                </li>
+            </ul>
+        </nav>
+        <!-- /.sidebar-menu -->
+    </div>
+    <!-- /.sidebar -->
+</aside>
+
+<div class="content-wrapper">
+    <!-- Content Header (Page header) -->
+    <div class="content-header">
+        <div class="container-fluid">
+            <div class="row mb-2">
+                <div class="col-sm-6">
+                    <h1 class="m-0 text-dark">View Profile</h1>
+                </div><!-- /.col -->
+                <div class="col-sm-6">
+                    <ol class="breadcrumb float-sm-right">
+                        <li class="breadcrumb-item">Dashboard</li>
+                        <li class="breadcrumb-item active">Profile</li>
+                    </ol>
+                </div><!-- /.col -->
+            </div><!-- /.row -->
+        </div><!-- /.container-fluid -->
+    </div>
+    <!-- /.content-header -->
+
+    <section class="content">
+        <div class="container-fluid">
+            <div class="card card-dark card-outline">
+                <div class="card-header">
+                    <div class="float-left">
+                        <h3 class="card-title p-2">My Profile</h3>
+                    </div>
+                    <div class="float-right">
+                        <a asp-action="EditProfile" asp-controller="PublisherDashboard" asp-route-profileId="@Model.ProfileId" title="Edit Profile" class="btn btn-default">Edit Profile</a>
+                    </div>
+                </div>
+                <!-- /.card-header -->
+                <div class="card-body">
+                    <div class="row">
+                        <img src="@Model.ProfilePicture" style="border-radius: 40px;border-width: 2px;width: 80px; height: 80px; margin-right: 20px" />
+                        <div class="col-md-4">
+                            <dl class="dl-horizontal">
+                                <dt>
+                                    @Html.DisplayNameFor(model => model.FullName)
+                                </dt>
+                                <dd>
+                                    @Html.DisplayFor(model => model.FullName)
+                                </dd>
+                                <dt>
+                                    @Html.DisplayNameFor(model => model.User.Email)
+                                </dt>
+                                <dd>
+                                    @Html.DisplayFor(model => model.User.Email)
+                                </dd>
+                            </dl>
+                        </div>
+                    </div>
+                </div>
+                <!-- /.card-body -->
+            </div>
+        </div>
+    </section>
+</div>

@@ -1,0 +1,216 @@
+﻿@model IEnumerable<AdGate.Models.User>
+
+@{
+    ViewData["Title"] = "Users List";
+    Layout = "_AdminDashboardLayout";
+}
+
+<aside class="main-sidebar sidebar-dark-primary elevation-4">
+    <!-- Brand Logo -->
+    <a href="index3.html" class="brand-link">
+        @*<img src="dist/img/AdminLTELogo.png" alt="AdminLTE Logo" class="brand-image img-circle elevation-3"
+            style="opacity: .8">*@
+        <span class="brand-text font-weight-light">Dashboard</span>
+    </a>
+
+    <!-- Sidebar -->
+    <div class="sidebar">
+        <!-- Sidebar user panel (optional) -->
+        @*<div class="user-panel mt-3 pb-3 mb-3 d-flex">
+                <div class="image">
+                    <img src="dist/img/user2-160x160.jpg" class="img-circle elevation-2" alt="User Image">
+                </div>
+                <div class="info">
+                    <a href="#" class="d-block">Alexander Pierce</a>
+                </div>
+            </div>*@
+
+        <!-- Sidebar Menu -->
+        <nav class="mt-2">
+            <ul class="nav nav-pills nav-sidebar flex-column" data-widget="treeview" role="menu" data-accordion="false">
+                <!-- Add icons to the links using the .nav-icon class
+                with font-awesome or any other icon font library -->
+                <li class="nav-item has-treeview menu-open">
+                    <a href="#" class="nav-link active">
+                        <i class="nav-icon fas fa-tasks"></i>
+                        <p>
+                            Manage Users
+                            <i class="right fas fa-angle-left"></i>
+                        </p>
+                    </a>
+                    <ul class="nav nav-treeview">
+                        <li class="nav-item">
+                            <a asp-action="Index" class="nav-link active">
+                                <i class="fas fa-users nav-icon"></i>
+                                <p>View All Users</p>
+                            </a>
+                        </li>
+                        <li class="nav-item">
+                            <a asp-action="CreateAdmin" class="nav-link">
+                                <i class="fas fa-user-cog nav-icon"></i>
+                                <p>Create Administrator</p>
+                            </a>
+                        </li>
+                    </ul>
+                </li>
+                <li class="nav-item">
+                    <a data-toggle="modal" data-target="#logoutModal" class="nav-link">
+                        <i class="nav-icon fas fa-sign-out-alt"></i>
+                        <p>
+                            Sign Out
+                        </p>
+                    </a>
+                </li>
+            </ul>
+        </nav>
+        <!-- /.sidebar-menu -->
+    </div>
+    <!-- /.sidebar -->
+</aside>
+
+<div class="content-wrapper">
+    <!-- Content Header (Page header) -->
+    <div class="content-header">
+        <div class="container-fluid">
+            <div class="row mb-2">
+                <div class="col-sm-6">
+                    <h1 class="m-0 text-dark">Manage Users</h1>
+                </div><!-- /.col -->
+                <div class="col-sm-6">
+                    <ol class="breadcrumb float-sm-right">
+                        <li class="breadcrumb-item">Admin Dashboard</li>
+                        <li class="breadcrumb-item">Manage Users</li>
+                        <li class="breadcrumb-item active">View All Users</li>
+                    </ol>
+                </div><!-- /.col -->
+            </div><!-- /.row -->
+        </div><!-- /.container-fluid -->
+    </div>
+    <!-- /.content-header -->
+
+    <section class="content">
+        <div class="container-fluid">
+            <div class="card card-dark card-outline">
+                <div class="card-header">
+                    <h3 class="card-title">List of All Users (Excluding Admins)</h3>
+                </div>
+                <!-- /.card-header -->
+                <div class="card-body">
+                    <table id="userTable" class="table table-bordered">
+                        <thead>
+                            <tr>
+                                <th>
+                                    @Html.DisplayNameFor(model => model.Email)
+                                </th>
+                                <th>
+                                    @Html.DisplayNameFor(model => model.UserType)
+                                </th>
+                                <th>
+                                    @Html.DisplayNameFor(model => model.IsActive)
+                                </th>
+                                <th>Actions</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            @foreach (var item in Model)
+                            {
+                                @if (item.UserType != UserType.Administrator)
+                                {
+                                    <tr>
+                                        <td>
+                                            @Html.DisplayFor(modelItem => item.Email)
+                                        </td>
+                                        <td>
+                                            @Html.DisplayFor(modelItem => item.UserType)
+                                        </td>
+                                        <td>
+                                            @Html.DisplayFor(modelItem => item.IsActive)
+                                        </td>
+                                        <td>
+                                            <div class="btn-group">
+                                                <a asp-action="Details" title="Details" asp-route-id="@item.UserId" class="btn btn-default"><i class="fas fa-info-circle"></i></a>
+                                                <a asp-action="Delete" title="Deactivate" asp-route-id="@item.UserId" class="btn btn-default"><i class="fas fa-ban"></i></a>
+                                            </div>
+                                        </td>
+                                    </tr>
+                                }
+                            }
+                        </tbody>
+                    </table>
+                </div>
+                <!-- /.card-body -->
+            </div>
+
+            <div class="card card-dark card-outline">
+                <div class="card-header">
+                    <div class="float-left">
+                        <h3 class="card-title p-2">List of All Admins</h3>
+                    </div>
+                    <div class="float-right">
+                        <a asp-action="CreateAdmin" class="btn btn-primary text-white" style="cursor: pointer">
+                            <i class="fas fa-plus"></i> New Admin
+                        </a>
+                    </div>
+                </div>
+                <!-- /.card-header -->
+                <div class="card-body">
+                    <table id="adminTabel" class="table table-bordered">
+                        <thead>
+                            <tr>
+                                <th>
+                                    @Html.DisplayNameFor(model => model.Email)
+                                </th>
+                                <th>
+                                    @Html.DisplayNameFor(model => model.UserType)
+                                </th>
+                                <th>
+                                    @Html.DisplayNameFor(model => model.IsActive)
+                                </th>
+                                <th>Actions</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            @foreach (var item in Model)
+                            {
+                                @if (item.UserType == UserType.Administrator && item.UserId.ToString() != ViewData["Me"].ToString())
+                                {
+                                    <tr>
+                                        <td>
+                                            @Html.DisplayFor(modelItem => item.Email)
+                                        </td>
+                                        <td>
+                                            @Html.DisplayFor(modelItem => item.UserType)
+                                        </td>
+                                        <td>
+                                            @if (item.IsActive)
+                                            {
+                                                <span class="badge badge-success">Active</span>
+                                            }
+                                            else
+                                            {
+                                                <span class="badge badge-danger">Inactive</span>
+                                            }
+                                        </td>
+                                        <td>
+                                            <div class="btn-group">
+                                                @if (item.IsActive)
+                                                {
+                                                    <a asp-action="Deactivate" asp-route-id="@item.UserId" title="Deactivate" class="btn btn-default"><i class="fas fa-ban"></i></a>
+                                                }
+                                                else
+                                                {
+                                                    <a asp-action="Activate" asp-route-id="@item.UserId" title="Activate" class="btn btn-default"><i class="fas fa-check-circle"></i></a>
+                                                }
+                                            </div>
+                                        </td>
+                                    </tr>
+                                }
+                            }
+                        </tbody>
+                    </table>
+                </div>
+                <!-- /.card-body -->
+            </div>
+        </div>
+    </section>
+</div>

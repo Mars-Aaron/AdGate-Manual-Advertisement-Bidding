@@ -1,0 +1,192 @@
+﻿@model AdGate.Models.AdvertiserProfile
+
+@{
+    ViewData["Title"] = "Users List";
+    Layout = "_AdvertiserDashboardLayout";
+}
+
+    <aside class="main-sidebar sidebar-dark-primary elevation-4">
+        <!-- Brand Logo -->
+        <a href="index3.html" class="brand-link">
+            @*<img src="dist/img/AdminLTELogo.png" alt="AdminLTE Logo" class="brand-image img-circle elevation-3"
+            style="opacity: .8">*@
+            <span class="brand-text font-weight-light">Dashboard</span>
+        </a>
+
+        <!-- Sidebar -->
+        <div class="sidebar">
+            <!-- Sidebar user panel (optional) -->
+            @*<div class="user-panel mt-3 pb-3 mb-3 d-flex">
+                <div class="image">
+                    <img src="dist/img/user2-160x160.jpg" class="img-circle elevation-2" alt="User Image">
+                </div>
+                <div class="info">
+                    <a href="#" class="d-block">Alexander Pierce</a>
+                </div>
+            </div>*@
+
+            <!-- Sidebar Menu -->
+            <nav class="mt-2">
+                <ul class="nav nav-pills nav-sidebar flex-column" data-widget="treeview" role="menu" data-accordion="false">
+                    <!-- Add icons to the links using the .nav-icon class
+                with font-awesome or any other icon font library -->
+                    <li class="nav-item has-treeview">
+                        <a href="#" class="nav-link">
+                            <i class="nav-icon fas fa-tasks"></i>
+                            <p>
+                                Ad Spaces Market
+                                <i class="right fas fa-angle-left"></i>
+                            </p>
+                        </a>
+                        <ul class="nav nav-treeview">
+                            <li class="nav-item">
+                                <a asp-action="Index" class="nav-link">
+                                    <i class="fas fa-users nav-icon"></i>
+                                    <p>Browse Ad Spaces</p>
+                                </a>
+                            </li>
+                            <li class="nav-item">
+                                <a asp-action="CreateAdmin" class="nav-link">
+                                    <i class="fas fa-user-cog nav-icon"></i>
+                                    <p>Recommended AdSpaces</p>
+                                </a>
+                            </li>
+                        </ul>
+                    </li>
+                    <li class="nav-item has-treeview">
+                        <a href="#" class="nav-link">
+                            <i class="nav-icon fas fa-tasks"></i>
+                            <p>
+                                Ad Network
+                                <i class="right fas fa-angle-left"></i>
+                            </p>
+                        </a>
+                        <ul class="nav nav-treeview">
+                            <li class="nav-item">
+                                <a asp-action="Index" class="nav-link">
+                                    <i class="fas fa-users nav-icon"></i>
+                                    <p>Affiliated Publishers</p>
+                                </a>
+                            </li>
+                            <li class="nav-item">
+                                <a asp-action="CreateAdmin" class="nav-link">
+                                    <i class="fas fa-user-cog nav-icon"></i>
+                                    <p>Message Affiliates</p>
+                                </a>
+                            </li>
+                        </ul>
+                    </li>
+                    <li class="nav-item has-treeview menu-open">
+                        <a href="#" class="nav-link active">
+                            <i class="nav-icon fas fa-tasks"></i>
+                            <p>
+                                Profile
+                                <i class="right fas fa-angle-left"></i>
+                            </p>
+                        </a>
+                        <ul class="nav nav-treeview">
+                            <li class="nav-item">
+                                <a asp-action="Index" asp-controller="AdvertiserDashboard" class="nav-link active">
+                                    <i class="fas fa-users nav-icon"></i>
+                                    <p>View Profile</p>
+                                </a>
+                            </li>
+                            <li class="nav-item">
+                                <a asp-action="EditProfile" asp-controller="AdvertiserDashboard" class="nav-link">
+                                    <i class="fas fa-user-cog nav-icon"></i>
+                                    <p>Edit Profile</p>
+                                </a>
+                            </li>
+                        </ul>
+                    </li>
+                    <li class="nav-item">
+                        <a data-toggle="modal" data-target="#logoutModal" class="nav-link">
+                            <i class="nav-icon fas fa-sign-out-alt"></i>
+                            <p>
+                                Statistics
+                            </p>
+                        </a>
+                    </li>
+                    <li class="nav-item">
+                        <a data-toggle="modal" data-target="#logoutModal" class="nav-link">
+                            <i class="nav-icon fas fa-sign-out-alt"></i>
+                            <p>
+                                Sign Out
+                            </p>
+                        </a>
+                    </li>
+                </ul>
+            </nav>
+            <!-- /.sidebar-menu -->
+        </div>
+        <!-- /.sidebar -->
+    </aside>
+
+<div class="content-wrapper">
+    <!-- Content Header (Page header) -->
+    <div class="content-header">
+        <div class="container-fluid">
+            <div class="row mb-2">
+                <div class="col-sm-6">
+                    <h1 class="m-0 text-dark">View Profile</h1>
+                </div><!-- /.col -->
+                <div class="col-sm-6">
+                    <ol class="breadcrumb float-sm-right">
+                        <li class="breadcrumb-item">Dashboard</li>
+                        <li class="breadcrumb-item active">Profile</li>
+                    </ol>
+                </div><!-- /.col -->
+            </div><!-- /.row -->
+        </div><!-- /.container-fluid -->
+    </div>
+    <!-- /.content-header -->
+
+    <section class="content">
+        <div class="container-fluid">
+            <div class="card card-dark card-outline">
+                <div class="card-header">
+                    <h3 class="card-title">My Profile</h3>
+                </div>
+                <!-- /.card-header -->
+                <div class="card-body">
+                    <div class="row">
+                        <img src="@Model.ProfilePicture" style="border-radius: 40px;border-width: 2px;width: 80px; height: 80px;" />
+                        <div class="col-md-4">
+                            <dl class="dl-horizontal">
+                                <dt>
+                                    @Html.DisplayNameFor(model => model.FullName)
+                                </dt>
+                                <dd>
+                                    @Html.DisplayFor(model => model.FullName)
+                                </dd>
+                                <dt>
+                                    @Html.DisplayNameFor(model => model.CompanyName)
+                                </dt>
+                                <dd>
+                                    @Html.DisplayFor(model => model.CompanyName)
+                                </dd>
+                                <dt>
+                                    @Html.DisplayNameFor(model => model.User.Email)
+                                </dt>
+                                <dd>
+                                    @Html.DisplayFor(model => model.User.Email)
+                                </dd>
+                                <dt>
+                                    Tags
+                                </dt>
+                                <dd>
+                                    @foreach (var tag in Model.AdvertiserProfileTags)
+                                    {
+                                        <span class="badge badge-info">@tag.Tag.TypeName</span>
+                                    }
+                                </dd>
+                            </dl>
+                            <a asp-action="EditProfile" asp-route-profileId="@Model.ProfileId" title="Edit Profile" class="btn btn-default">Edit Profile</a>
+                        </div>
+                    </div>
+                </div>
+                <!-- /.card-body -->
+            </div>
+        </div>
+    </section>
+</div>
