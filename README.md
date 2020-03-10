@@ -1,0 +1,1 @@
+# AdGate-Manual-Advertisement-Bidding
